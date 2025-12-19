@@ -106,6 +106,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "start": [
+            "symfony serve --daemon"
         ]
     },
     "extra": {
