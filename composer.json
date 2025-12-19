@@ -113,6 +113,12 @@
         ],
         "start": [
             "symfony serve --daemon"
+        ],
+        "test:codeception": [
+            "codecept clean",
+            "php bin/clean-data-test.php",
+            "php bin/console doctrine:schema:create --env=test",
+            "codecept run"
         ]
     },
     "extra": {
