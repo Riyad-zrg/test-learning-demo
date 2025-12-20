@@ -5,6 +5,7 @@ namespace App\Tests\Unit;
 
 use App\Entity\Comment;
 use App\Entity\Post;
+use App\Entity\Tag;
 use App\Tests\Support\UnitTester;
 
 class PostTest extends \Codeception\Test\Unit
@@ -25,7 +26,18 @@ class PostTest extends \Codeception\Test\Unit
         $post->addComment($comment); //Le commentaire est ajouté une première fois dans le Post.
         $post->addComment($comment); //On essaye de rajouter le même commentaire une deuxième fois
 
-        $this->assertTrue($post->getComments()->count() === 1, 'Le post ne doit pas contenir de commentaires doublons');
+        $this->assertEquals(1,$post->getComments()->count(), 'Le post ne doit pas contenir de commentaires doublons'); //On vérifie qu'un seul commentaire a été ajouté
+    }
+
+    public function testAddDuplicatedTagInPost()
+    {
+        $post = new Post();
+        $tag = $this->makeEmpty(Tag::class);
+
+        $post->addTag($tag); //Le tag est ajouté une première fois dans le Post.
+        $post->addTag($tag); //On essaye de rajouter le même tag une deuxième fois
+
+        $this->assertEquals(1,$post->getTags()->count(), "Le post ne doit pas contenir de tags doublons."); //On vérifie qu'un seul tag a été ajouté
     }
 
 
